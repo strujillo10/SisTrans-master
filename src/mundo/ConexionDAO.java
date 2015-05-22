@@ -131,7 +131,6 @@ public class ConexionDAO
 			e.printStackTrace();
 		}
 	}
-	
 	public void closeConnection(Connection connection) throws Exception 
 	{        
 		try 

@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<a href="index.htm"><title>ProdAndes - Registrar</title></a>
+		<link rel="stylesheet" href="bootstrap.min.css">
+	</head>
+	<body bgcolor="#bdc3c7">
+		<form method="POST" action="registro.htm">
+			<table bgcolor="#ecf0f1" width=100%>
+				<tr>
+					<td><h1><a href=index.htm>ProdAndes</a></h1></td>
+					<td><h2 style="text-align: right">Registro de Usuarios</h2></td>
+				</tr>
+			</table>
+			<hr>
+			<table bgcolor="#bdc3c7" width=100%>
+				<tr>
+					<td></td>
+				</tr>
+			</table>
+			<table align= center bgcolor="#ecf0f1" width="30%">
+				<tr></tr>
+				<tr>
+					<td><h4 align="left">Usuario: </h4></td>
+					<td><input type="text" name="usuario" size="33" class="normal"></td>
+				</tr>
+				<tr></tr>
+				<tr>
+					<td><h4 align="left">Contrasenia: </h4></td>
+					<td height="30"><input type="password" name="contrasenia" size="33" class="normal"></td>
+				</tr>
+				<tr></tr>
+				<tr>
+					<td><h4 align="left">Perfil: </h4></td>
+					<td width="100"><select size="1" name="tipo" class="normal">
+						  <option value="admin">Administrador</option>
+						  <option value="natural">Persona Natural</option>
+						  <option value="juridica">Persona Juridica</option>
+						</select>
+					</td>
+				</tr>
+				<tr></tr>
+			</table>
+			<p align=center>
+			<input type="submit" value="Registrar" name="B1" class="normal">
+			<input type="reset" value="Borrar" name="B2" class="normal"></p>
+		</form>
+	</body>
+</html>

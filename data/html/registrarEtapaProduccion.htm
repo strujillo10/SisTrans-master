@@ -1,0 +1,78 @@
+<html>
+<head>
+<a href="index.htm"><title>ProdAndes - Reigstro Etapas</title></a>
+<link rel="stylesheet" href="bootstrap.min.css">
+</head>
+<body bgcolor="#bdc3c7">
+	<form method="POST" action="registro.htm">
+		<table bgcolor="#ecf0f1" width="100%">
+			<tr>
+				<td><h1>
+						<a href="index.htm">ProdAndes</a>
+					</h1></td>
+				<td><h2 style="text-align: right">Registro de Etapas de Produccion</h2></td>
+			</tr>
+		</table>
+		<hr>
+		<table bgcolor="#bdc3c7" width="100%">
+			<tr>
+				<td></td>
+			</tr>
+		</table>
+		<table align="center" bgcolor="#ecf0f1" width="60%">
+			<tr>
+				<td><h4>Numero de Secuencia:</h4></td>
+				<td><input type="text" name="numeroSecuencia" size="23"
+					class="normal"></td>
+			</tr>
+			<tr></tr>
+			<tr>
+				<td><h4>Duracion (en dias):</h4></td>
+				<td><input type="text" name="precio" size="23" class="normal"></td>
+			</tr>
+			<tr></tr>
+			<tr>
+				<td><h4 align="left">Estacion:</h4></td>
+				<td width="100"><select size="1" name="estacion"
+					style="width: 207px" class="normal">
+						<option value="estacion1">Estacion1</option>
+				</select></td>
+			</tr>
+			<tr></tr>
+			<tr>
+				<td><h4 align="left">Materia Prima:</h4></td>
+				<td width="100"><select size="1" name="materiaPrima"
+					style="width: 207px" class="normal">
+						<option value="materiaPrima1">Materia Prima1</option>
+				</select></td>
+			</tr>
+			<tr></tr>
+			<tr>
+				<td><h4 align="left">Componente:</h4></td>
+				<td width="100"><select size="1" name="componente"
+					style="width: 207px" class="normal">
+						<option value="componente1">Componente1</option>
+				</select></td>
+			</tr>
+			<tr></tr>
+		</table>
+		<h4 align="center">
+			<form method="POST" action="registroEtapasProduccion.htm">
+				<input type="submit" value="Registrar Siguiente Etapa de Produccion"
+					size="33" name="registrarEP" class="normal"
+					style="background: #FFFFFF; border: none;">
+			</form>
+		</h4>
+		<h4 align="center">
+			<form method="POST" action="registroProducto.htm">
+				<input type="submit" value="Finalizar Registro Etapas de Produccion"
+					size="33" name="registrarEP" class="normal"
+					style="background: #FFFFFF; border: none;">
+			</form>
+		</h4>
+		<p align="center">
+			<input type="reset" value="Borrar" name="B2" class="normal">
+		</p>
+	</form>
+</body>
+</html>

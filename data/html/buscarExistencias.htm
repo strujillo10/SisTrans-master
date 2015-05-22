@@ -1,0 +1,111 @@
+<html>
+	<head>
+		<a href="index.htm"><title>ProdAndes - Busqueda</title></a>
+		<link rel="stylesheet" href="bootstrap.min.css">
+	</head>
+	<body bgcolor="#bdc3c7">
+		<form method="POST" action="resultadoBusqueda.htm">
+			<table bgcolor="#ecf0f1" width=100%>
+				<tr>
+					<td><h1><a href=index.htm>ProdAndes</a></h1></td>
+					<td><h2 style="text-align:right">Busqueda de Existencias</h2></td>
+				</tr>
+			</table>
+			<hr>
+			<table bgcolor="#bdc3c7" width=100%>
+				<tr>
+					<td></td>
+				</tr>
+			</table>
+
+			<table bgcolor="#ecf0f1" width=100%>
+				<tr>
+					<td><h3>Criterio de búsqueda</h3></td>
+				</tr>
+			</table>
+			<table align="center" bgcolor="#ecf0f1" width=20%>
+				<select size="1" name="criterio" id="criterio" class="normal">
+					<option value="tipo">Tipo Material</option>
+					<option value="nombre">Nombre Material</option>
+					<option value="cantidad">Cantidad Inventario</option>
+					<option value="etapa">Etapa Produccion</option>
+				</select>
+			</table>
+			<script type="text/javascript">
+				jQuery(document).ready(function(){
+					jQuery("#criterio").change(function(){
+						jQuery(".toggle").hide();
+						jQuery("#" + jQuery(this).val()).show();
+					});
+				});
+			</script>
+			<table bgcolor="#bdc3c7" width=100%>
+				<tr>
+					<td></td>
+				</tr>
+			</table>
+			<table align= center bgcolor="#ecf0f1" width="80%">
+				<tr>
+					<td>Material a buscar:</td>
+					<td><select size="1" name="material" class="normal">
+						  <option value="materiaPrima">Materias Primas</option>
+						  <option value="componente">Componentes</option>
+						  <option value="producto">Productos</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Nombre del Material:</td>
+					<td><input type="text" name="nombreMaterial" class="normal"></td>
+				</tr>
+				<tr>
+					<td>Rango Cantidad en Inventario:</td>
+					<td>Mayor a:</td>
+					<td><input type="text" name="mayorA" class="normal"></td>
+					<td>Menor a:</td>
+					<td><input type="text" name="menorA" class="normal"></td>
+				</tr>
+				<tr>
+					<td>Etapa de produccion:</td>
+					<td><input type="text" name="etapaProd" class="normal"></td>
+				</tr>
+			</table>
+			<table align= center bgcolor="#ecf0f1" width="80%"><tr><small>*Puede dejar espacios en blanco, segun el tipo de busqueda que desea hacer</small></tr><tr></tr></table>
+			<table bgcolor="#bdc3c7" width=100%>
+				<tr>
+					<td></td>
+				</tr>
+			</table>
+			<table align= center bgcolor="#ecf0f1" width=100%>
+				<tr>
+					<td><h3>Detalles de búsqueda</h3></td>
+				</tr>
+			</table>
+			<table bgcolor="#bdc3c7" width=100%>
+				<tr>
+					<td></td>
+				</tr>
+			</table>
+			<table align= center bgcolor="#ecf0f1" width="80%">
+				<tr>
+					<td>Ordenar Por: </td>
+					<td><input type="text" name="criterioOrdenamiento" class="normal"></td>
+					<td><select size="1" name="tipo" class="normal">
+						  <option value="asc">Ascendentemente</option>
+						  <option value="dsc">Descendentemente</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Criterio para agrupar respuestas:</td>
+					<td><input type="text" name="agrupar" class="normal"></td>
+				</tr>
+			</table>
+			<table align= center bgcolor="#ecf0f1" width="80%"><tr><small>*Puede dejar espacios en blanco, segun el tipo de busqueda que desea hacer</small></tr><tr></tr></table>
+			<p align=center>
+			<input type="hidden" value="buscarAdmin" name="criterio" class="normal">
+			<input type="submit" value="Buscar" name="bus" class="normal">
+			<input type="reset" value="Borrar" name="Borrar" class="normal"></p>
+		</form>
+	</body>
+</html>

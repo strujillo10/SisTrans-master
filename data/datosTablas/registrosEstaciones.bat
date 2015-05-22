@@ -1,0 +1,1 @@
+sqlldr CONTROL=registrosEstaciones.ctl   skip=0   

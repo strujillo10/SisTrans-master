@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+                         "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+ <description>Servlets ProdAndes</description>
+ 
+ 
+ <!-- SERVLETS -->
+ 
+ 
+ <servlet>
+  <servlet-name>Ingreso</servlet-name>
+  <servlet-class>Interfaz.ServletIngresar</servlet-class>
+ </servlet>
+ 
+ <servlet>
+  <servlet-name>Registro</servlet-name>
+  <servlet-class>Interfaz.ServletRegistrar</servlet-class>
+ </servlet>
+ 
+ <servlet>
+  <servlet-name>RegistroProveedor</servlet-name>
+  <servlet-class>Interfaz.ServletRegistrarProveedor</servlet-class>
+ </servlet>
+ 
+ <servlet>
+  <servlet-name>RegistroLlegadaMaterial</servlet-name>
+  <servlet-class>Interfaz.ServletRegistrarLlegadaMaterial</servlet-class>
+ </servlet>
+ 
+ <servlet>
+  <servlet-name>RegistroMaterial</servlet-name>  
+  <servlet-class>Interfaz.ServletRegistrarMaterial</servlet-class>
+ </servlet>
+ 
+ <servlet>
+  <servlet-name>RegistroEtapasProduccion</servlet-name>
+  <servlet-class>Interfaz.ServletRegistrarEtapasProduccion</servlet-class>
+ </servlet>
+ 
+ <servlet>
+  <servlet-name>RegistroProducto</servlet-name>
+  <servlet-class>Interfaz.ServletRegistrarProducto</servlet-class>
+ </servlet>
+ 
+ <servlet>
+  <servlet-name>ResultadoBusqueda</servlet-name>
+  <servlet-class>Interfaz.ServletResultadoBusqueda</servlet-class>
+ </servlet>
+ 
+ <servlet>
+  <servlet-name>RegistroPedido</servlet-name>
+  <servlet-class>Interfaz.ServletRegistrarPedido</servlet-class>
+ </servlet>
+ 
+ <servlet>
+  <servlet-name>Producto</servlet-name>
+  <servlet-class>Interfaz.ServletProducto</servlet-class>
+ </servlet>
+ 
+ <servlet>
+  <servlet-name>Eliminar</servlet-name>
+  <servlet-class>Interfaz.ServletEliminar</servlet-class>
+ </servlet>
+ 
+ <servlet>
+  <servlet-name>RegistroEstacion</servlet-name>
+  <servlet-class>Interfaz.ServletRegistrarEstacion</servlet-class>
+ </servlet>
+ 
+ 
+ <!-- MAPPING -->
+ 
+ 
+ <servlet-mapping>
+  <servlet-name>Ingreso</servlet-name>
+  <url-pattern>/ingreso.htm</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet-mapping>
+  <servlet-name>Registro</servlet-name>
+  <url-pattern>/registro.htm</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet-mapping>
+  <servlet-name>RegistroProveedor</servlet-name>
+  <url-pattern>/registroProveedor.htm</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet-mapping>
+  <servlet-name>RegistroLlegadaMaterial</servlet-name>
+  <url-pattern>/registroLlegadaMaterial.htm</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet-mapping>
+  <servlet-name>RegistroMaterial</servlet-name>
+  <url-pattern>/registroMaterial.htm</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet-mapping>
+  <servlet-name>RegistroEtapasProduccion</servlet-name>
+  <url-pattern>/registroEtapasProduccion.htm</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet-mapping>
+  <servlet-name>RegistroProducto</servlet-name>
+  <url-pattern>/registroProducto.htm</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet-mapping>
+  <servlet-name>ResultadoBusqueda</servlet-name>
+  <url-pattern>/resultadoBusqueda.htm</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet-mapping>
+  <servlet-name>RegistroPedido</servlet-name>
+  <url-pattern>/registroPedido.htm</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet-mapping>
+  <servlet-name>Producto</servlet-name>
+  <url-pattern>/mostrarProducto.htm</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet-mapping>
+  <servlet-name>Eliminar</servlet-name>
+  <url-pattern>/eliminar.htm</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet-mapping>
+  <servlet-name>RegistroEstacion</servlet-name>
+  <url-pattern>/registroEstacion.htm</url-pattern>
+ </servlet-mapping>
+ 
+ <login-config>
+  <auth-method>BASIC</auth-method>
+ </login-config>
+ 
+</web-app>

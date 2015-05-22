@@ -11,20 +11,20 @@ import javax.jms.MessageProducer;
 import javax.jms.Session;
 import javax.naming.InitialContext;
 
+import Interfaz.Receiver;
+import Interfaz.Sender;
+
 
 public class ConexionDAO
 {	
 
 	private ConnectionFactory cf;
-
 	private Connection conex;
-
 	private Session sesion;
-
 	private Destination destino;
-
 	private MessageProducer mp;
-	
+	private Sender sender;
+	private Receiver receiver;
 	
 	/**
 	 * Conexiï¿½n
@@ -64,6 +64,8 @@ public class ConexionDAO
 		url = "jdbc:oracle:thin:@prod.oracle.virtual.uniandes.edu.co:1531:prod";
 		
 		//TRUJILLO
+		sender = new Sender(); 
+		receiver = new Receiver(); 
 		try 
 		{
 			// Inicia el contexto según la interfaz dada por JBOSS.

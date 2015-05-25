@@ -440,6 +440,54 @@ public class AplicacionWeb {
 		return fechaEntrega;
 	}	
 	
+	//RF18
+	public Date registrarProducto2(String login, String idProducto, int cantidad, Date fechaPedido) throws Exception
+	{
+		System.out.println(login + " - " + idProducto + " - " + cantidad + " - " + fechaPedido.toLocaleString());
+		ArrayList<Etapa> etapas = new ArrayList<Etapa>();
+		String idPedido = Integer.toString(darContadorId());
+		
+		conexion.setAutoCommitFalso();
+		Savepoint save = conexion.darConexion().setSavepoint();
+		
+		etapas = obtenerEtapas(idProducto);
+		Date fechaEntrega = null;
+		String[] datosPedido = {idPedido,idProducto,login,Integer.toString(fechaPedido.getDay()),Integer.toString(fechaPedido.getMonth()),Integer.toString(fechaPedido.getDay()),Integer.toString(fechaPedido.getDay()),Integer.toString(cantidad)};
+		crud.insertarTupla(Pedido.NOMBRE, Pedido.COLUMNAS, Pedido.TIPO, datosPedido);
+		
+		ArrayList<String> idInventarios = new ArrayList<String>();
+		for(int i = 0; i < cantidad; i++)
+		{
+			try
+			{
+			idInventarios.add(Integer.toString(darContadorId()));
+			String[] datosInventario = {idInventarios.get(i),idProducto,idPedido};
+			crud.insertarTupla(Producto.NOMBRE_INVENTARIO_PRODUCTOS, Producto.COLUMNAS_INVENTARIO_PRODUCTOS, Producto.TIPO_INVENTARIO_PRODUCTOS, datosInventario);
+			}
+			catch(Exception e)
+			{
+				conexion.darConexion().rollback(save);
+				e.printStackTrace();
+			}
+		}
+		for(Etapa etapa : etapas)
+		{
+			try
+			{
+				fechaEntrega = verificarExistencias(idProducto,etapa,cantidad,etapas.size(),idPedido,idInventarios);
+			}
+			catch(Exception e)
+			{
+				conexion.darConexion().rollback(save);
+				e.printStackTrace();
+				throw new Exception();
+			}
+		}
+		conexion.darConexion().commit();
+		conexion.setAutoCommitVerdadero();
+		return fechaEntrega;
+	}
+	
 	/**
 	 * @param idProducto
 	 * @return

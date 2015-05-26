@@ -15,13 +15,16 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
+import java.util.SortedSet;
 import java.util.TreeMap;
 
 
@@ -591,6 +594,7 @@ public class AplicacionWeb {
 	// METODOS DAR Y BUSCAR
 	//--------------------------------------------------
 
+	
 	/**
 	 * @param login
 	 * @param password
@@ -707,6 +711,16 @@ public class AplicacionWeb {
 			rta.add(producto);
 		}
 		return rta;
+	}
+	
+	public void darMateriasMasUsadas(){
+		ArrayList<MateriaPrima> materiasPrimas = new ArrayList<MateriaPrima>();
+		ArrayList<Componente> componentes = new ArrayList<Componente>();
+		LinkedList<Material> materiales = new LinkedList<Material>();
+		materiales.addAll(materiasPrimas);
+		materiales.addAll(componentes);
+		Comparator<Material> comparador = new ComparadorNumerico();
+		Collections.sort(materiales, comparador);
 	}
 
 	public ArrayList<MateriaPrima> darMateriasPrimas (String condicion) throws Exception{
@@ -1441,10 +1455,7 @@ public class AplicacionWeb {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		AplicacionWeb aplicacionWeb = getInstancia();
-		ArrayList<String> usuarios = new ArrayList<String>();
-		ArrayList<String> idProductos = new ArrayList<String>();
-		ArrayList<String> productos = new ArrayList<String>();
+		
 		try {
 //			BufferedReader lector = new BufferedReader(new FileReader("C:\\Users\\Meili\\Dropbox\\Sistemas Transaccionales\\Datos\\usuarios.csv"));
 //			String linea = lector.readLine();

@@ -14,6 +14,7 @@ import mundo.Componente;
 import mundo.Estacion;
 import mundo.Etapa;
 import mundo.MateriaPrima;
+import mundo.Material;
 import mundo.Pedido;
 import mundo.Producto;
 import mundo.Proveedor;
@@ -554,6 +555,98 @@ public class ServletResultadoBusqueda extends ServletAbstract{
 		}
 	}
 	
+	public void darMaterialesOrdenados(HttpServletRequest request, PrintWriter respuesta){
+		String tipo = request.getParameter("tipo");
+		String filtro = request.getParameter("filtro");
+		ArrayList <Material> materiasPrimas = new ArrayList<Material>();
+		
+		try{
+    		respuesta.write( "<form method=\"POST\" action=\"resultadoBusqueda.htm\"><input name=\"criterio\" value=\"darMaterial\" type=\"hidden\">" );
+    		respuesta.write( "<table align=\"center\" bgcolor=\"#ecf0f1\" width=50%>" );
+    		respuesta.write( "<tr>" );
+    		respuesta.write( "<td><h4 align=\"center\">Filtrar por: </h4></td>" );
+    		respuesta.write( "<td align=\"center\"><select style=\"font-size: 15px;\" name=\"tipo\" size=\"1\"  class=\"normal\" \">" );
+    		respuesta.write( "<option value=\"materiaPrima\">Materia Prima</option>" );
+    		respuesta.write( "<option value=\"componente\">Componente</option>" );
+			respuesta.write( "</select></td>" );
+			respuesta.write( "<td align=\"center\"><input name=\"filtro\" value=\"Ingrese un nombre\" type=\"text\"></td>" );
+			respuesta.write( "<td align=\"center\"><input name=\"buscar\" value=\"Buscar\" type=\"submit\"></td>" );
+    		respuesta.write( "</tr>" );
+    		respuesta.write( "</form>" );
+    		respuesta.write( "</table>" );
+    		respuesta.write( "<table align=\"center\" bgcolor=\"#ecf0f1\" width=50%>" );
+    		respuesta.write( "<tr>" );
+    		respuesta.write( "<form method=\"POST\" action=\"resultadoBusqueda.htm\"><input name=\"criterio\" value=\"darMaterialOrdenado\" type=\"hidden\">" );
+    		respuesta.write( "<td align=\"center\"><input name=\"filtro\" value=\"Ingrese una cantidad\" type=\"text\"></td>" );
+    		respuesta.write( "<td align=\"center\"><input name=\"buscarOrdenado\" value=\"Buscar Material Más Usado\" type=\"submit\"></td>" );
+    		respuesta.write( "</tr>" );
+    		respuesta.write( "</table>" );
+    		respuesta.write( "</form>" );
+    		respuesta.write( "<hr>" );
+			
+			if (filtro != null){
+				
+				if (tipo != null && tipo.equals("materiaPrima")){
+					materiasPrimas = AplicacionWeb.getInstancia().darMateriasPrimas(filtro);
+				}
+				else if (tipo != null && tipo.equals("componente")){
+					componentes = AplicacionWeb.getInstancia().darComponentes(filtro);
+				}
+				else if (tipo == null){
+					materiasPrimas = AplicacionWeb.getInstancia().darMateriasPrimas(filtro);
+					componentes = AplicacionWeb.getInstancia().darComponentes(filtro);
+					}
+				if ((componentes.size() + materiasPrimas.size()) != 0){
+					respuesta.write( "<h4 align=\"center\">ProdAndes tiene registrados " + (materiasPrimas.size() + componentes.size()) + " materiales en total.</h4>" );
+					respuesta.write( "<table align=\"center\" bgcolor=\"#ecf0f1\" width=50%>" );
+					if (!materiasPrimas.isEmpty()){
+						respuesta.write( "<tr><td><h3 align=\"center\">Materias Primas (" + materiasPrimas.size() + ") </h3></td></tr>" );
+						for (MateriaPrima materia : materiasPrimas) {
+				        	respuesta.write( "<tr><td><h4>Materia Prima: " + materia.getId() + "</h4></td></tr>" );
+				        	respuesta.write( "<tr><td align=\"left\"><img alt=\"material\" src=\"imagenes/material.jpg\" name=\"material\"></td>" );
+				        	respuesta.write( "<td align=\"right\"><table align=\"center\" width=25%><tr><td align=\"left\"><h4><input value=\"Nombre: \" name=\"label1\" style=\"border: none;\" type=\"text\"></h4></td><td align=\"right\">" + materia.getId() + "</td></tr>" );
+					        respuesta.write( "<tr><td align=\"left\"><h4><input value=\"Cantidad: \" name=\"label2\" style=\"border: none;\" type=\"text\"></h4></td><td align=\"right\">" + materia.getCantidadInicial() + " " + materia.getUnidadMedida().toLowerCase() + "</td></tr>" );
+					        respuesta.write( "<tr><td align=\"left\"><h4><input value=\"Dia Ultima Aparicion: \" name=\"label2\" style=\"border: none;\" type=\"text\"\"></h4></td><td align=\"right\" size=\"\">" + materia.getDia() + "/" + materia.getMes() + "/2015</td></tr>" );
+					        respuesta.write( "<tr><td align=\"left\"><h4><input value=\"Cantidad Pedidos Asociados: \" name=\"label1\" style=\"border: none;\" type=\"text\"\"></h4></td><td align=\"right\">" + materia.getPedidos().size() + "</td></tr>" );
+					        respuesta.write( "<tr><td><table align=\"center\" bgcolor=\"#ecf0f1\" width=30%>" );
+					        for (String idPedido: materia.getPedidos()) {
+					        	respuesta.write( "<tr><td align=\"left\"><h5><input value=\"Id Pedido: \" name=\"label2\" style=\"border: none;\" type=\"text\"\"></h5></td><td align=\"right\" size=\"\">" + idPedido + "</td></tr>" );
+							}
+					        respuesta.write( "</table></td></tr></table></td><td></td></tr>" );
+					        respuesta.write( "<tr></tr>" );
+						}
+					}
+					if (!componentes.isEmpty()){
+						respuesta.write( "<tr><td><h3 align=\"center\">Componentes (" + componentes.size() + ") </h3></td></tr>" );
+						for (Componente componente: componentes) {
+				        	respuesta.write( "<tr><td><h4>Componente: " + componente.getId() + "</h4></td></tr>" );
+				        	respuesta.write( "<tr><td align=\"left\"><img alt=\"material\" src=\"imagenes/material.jpg\" name=\"material\"></td>" );
+				        	respuesta.write( "<td align=\"right\"><table align=\"center\" width=25%><tr><td align=\"left\"><h4><input value=\"Nombre: \" name=\"label1\" style=\"border: none;\" type=\"text\"></h4></td><td align=\"right\">" + componente.getId() + "</td></tr>" );
+					        respuesta.write( "<tr><td align=\"left\"><h4><input value=\"Cantidad: \" name=\"label2\" style=\"border: none;\" type=\"text\"></h4></td><td align=\"right\">" + componente.getCantidadInicial() + " " + componente.getUnidadMedida().toLowerCase() + "</td></tr>" );
+					        respuesta.write( "<tr><td align=\"left\"><h4><input value=\"Dia Ultima Aparicion: \" name=\"label2\" style=\"border: none;\" type=\"text\"\"></h4></td><td align=\"right\" size=\"\">" + componente.getDia() + "/" + componente.getMes() + "/2015</td></tr>" );
+					        respuesta.write( "<tr><td align=\"left\"><h4><input value=\"Cantidad Pedidos Asociados: \" name=\"label1\" style=\"border: none;\" type=\"text\"\"></h4></td><td align=\"right\">" + componente.getPedidos().size() + "</td></tr>" );
+					        respuesta.write( "<tr><td><table align=\"center\" bgcolor=\"#ecf0f1\" width=30%>" );
+					        for (String idPedido: componente.getPedidos()) {
+					        	respuesta.write( "<tr><td align=\"left\"><h5><input value=\"Id Pedido: \" name=\"label2\" style=\"border: none;\" type=\"text\"\"></h5></td><td align=\"right\" size=\"\">" + idPedido + "</td></tr>" );
+							}
+					        respuesta.write( "</table></td></tr></table></td><td></td></tr>" );
+					        respuesta.write( "<tr></tr>" );
+						}
+					}
+					respuesta.write( "</table>" );
+						
+				}
+				else{
+					error(respuesta, "No hay material con ese nombre", "admin");
+				}
+			}
+		}
+		catch (Exception e){
+			error(respuesta, "Hubo un error, por favor intentelo mas tarde.", "admin");
+			e.printStackTrace();
+		}
+	}
+	
 	public void darMateriales(HttpServletRequest request, PrintWriter respuesta){
 		String tipo = request.getParameter("tipo");
 		String filtro = request.getParameter("filtro");
@@ -571,6 +664,14 @@ public class ServletResultadoBusqueda extends ServletAbstract{
 			respuesta.write( "</select></td>" );
 			respuesta.write( "<td align=\"center\"><input name=\"filtro\" value=\"Ingrese un nombre\" type=\"text\"></td>" );
 			respuesta.write( "<td align=\"center\"><input name=\"buscar\" value=\"Buscar\" type=\"submit\"></td>" );
+    		respuesta.write( "</tr>" );
+    		respuesta.write( "</form>" );
+    		respuesta.write( "</table>" );
+    		respuesta.write( "<table align=\"center\" bgcolor=\"#ecf0f1\" width=50%>" );
+    		respuesta.write( "<tr>" );
+    		respuesta.write( "<form method=\"POST\" action=\"resultadoBusqueda.htm\"><input name=\"criterio\" value=\"darMaterialOrdenado\" type=\"hidden\">" );
+    		respuesta.write( "<td align=\"center\"><input name=\"filtro\" value=\"Ingrese una cantidad\" type=\"text\"></td>" );
+    		respuesta.write( "<td align=\"center\"><input name=\"buscarOrdenado\" value=\"Buscar Material Más Usado\" type=\"submit\"></td>" );
     		respuesta.write( "</tr>" );
     		respuesta.write( "</table>" );
     		respuesta.write( "</form>" );

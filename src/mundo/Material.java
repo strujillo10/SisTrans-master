@@ -28,6 +28,8 @@ public interface Material {
 
 	public void setMes(int mes);
 	
+	public ArrayList<String> getPedidos();
 	
+	public void setPedidos(ArrayList<String> pedido);
 	
 }

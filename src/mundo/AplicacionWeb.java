@@ -50,6 +50,10 @@ public class AplicacionWeb {
 	private String usuarioActual;
 
 	private int contadorId;
+	
+	private Receiver receiver;
+	
+	private Sender sender;
 
 
 	//--------------------------------------------------
@@ -68,6 +72,8 @@ public class AplicacionWeb {
 		conexion.iniciarConexion();
 		conexion.crearTablas();
 		crud = new CRUD(conexion);
+		sender = new Sender();
+		receiver = new Receiver();
 //		poblarTablas();
 		try
 		{
@@ -401,6 +407,9 @@ public class AplicacionWeb {
 	 * @throws Exception
 	 */
 	public Date registrarPedido (String login, String idProducto, int cantidad, Date fechaPedido) throws Exception{		
+		
+		sender.enviarMensaje("registrarPedido," + login + "," +  idProducto + "," + cantidad + "," + fechaPedido);
+		
 		System.out.println(login + " - " + idProducto + " - " + cantidad + " - " + fechaPedido.toLocaleString());
 		ArrayList<Etapa> etapas = new ArrayList<Etapa>();
 		String idPedido = Integer.toString(darContadorId());
@@ -1462,7 +1471,7 @@ public class AplicacionWeb {
 //			    int usuario = randUsuario.nextInt(9 - 0);
 //				Random randProducto = new Random();
 //				int producto = randProducto.nextInt(9-0);
-//				System.out.println("El usuario: " + usuarios.get(usuario) + " pidió el producto: " + productos.get(producto));
+//				System.out.println("El usuario: " + usuarios.get(usuario) + " pidiï¿½ el producto: " + productos.get(producto));
 //				Date dia = new Date();
 //				aplicacionWeb.registrarPedido(usuarios.get(usuario), idProductos.get(producto), 1, dia);
 //			}

@@ -2,7 +2,7 @@ package mundo;
 
 import java.util.ArrayList;
 
-public class MateriaPrima {
+public class MateriaPrima implements Material {
 	
 	//--------------------------------------------------
 	// ATRIBUTOS

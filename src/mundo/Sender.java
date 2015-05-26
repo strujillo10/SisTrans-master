@@ -1,4 +1,4 @@
-package Interfaz;
+package mundo;
 
 import java.io.IOException;
 import com.rabbitmq.client.ConnectionFactory;

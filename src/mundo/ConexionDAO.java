@@ -11,9 +11,6 @@ import javax.jms.MessageProducer;
 import javax.jms.Session;
 import javax.naming.InitialContext;
 
-import Interfaz.Receiver;
-import Interfaz.Sender;
-
 
 public class ConexionDAO
 {	
@@ -68,7 +65,7 @@ public class ConexionDAO
 		receiver = new Receiver(); 
 		try 
 		{
-			// Inicia el contexto según la interfaz dada por JBOSS.
+			// Inicia el contexto segï¿½n la interfaz dada por JBOSS.
 			InitialContext init = new InitialContext();
 			this.cf = (ConnectionFactory) init.lookup("RemoteConnectionFactory");
 			this.destino = (Destination) init.lookup("queue/testCola");
